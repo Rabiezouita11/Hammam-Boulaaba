@@ -2,7 +2,7 @@
 
 <tr>
     <td class="header">
-        <a href="http://test.hammamboulaaba.com/home" style="display: inline-block;">
+        <a href="http://127.0.0.1:8000/home" style="display: inline-block;">
             @if (trim($slot) === 'Hammam Boulaaba')
             <img src="/logo.png" />
 

@@ -188,8 +188,8 @@ class Checkout extends Controller
       'orderId' =>  $orderId,
       'webhook' => 'https://merchant.tech/api/notification_payment',
       'silentWebhook' => true,
-      'successUrl' => str_replace('http://127.0.0.1:8000', 'http://test.hammamboulaaba.com', url('/payment-success')),
-      'failUrl' => str_replace('http://127.0.0.1:8000', 'http://test.hammamboulaaba.com', url('/payment-failure')),
+      'successUrl' => str_replace('http://127.0.0.1:8000', 'http://127.0.0.1:8000', url('/payment-success')),
+      'failUrl' => str_replace('http://127.0.0.1:8000', 'http://127.0.0.1:8000', url('/payment-failure')),
       'theme' => 'light',
     ];
 

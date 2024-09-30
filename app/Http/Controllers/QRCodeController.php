@@ -13,7 +13,7 @@ class QRCodeController extends Controller
   public function generateQRCode($data)
   {
     // Add the base URL to the data
-    $baseURL = 'http://test.hammamboulaaba.com/';
+    $baseURL = 'http://127.0.0.1:8000/';
     $dataWithBaseURL = $baseURL . $data;
 
     // Decode the data from the URL

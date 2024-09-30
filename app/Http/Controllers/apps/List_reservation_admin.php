@@ -17,11 +17,7 @@ use App\Mail\ResrvationEmail;
 class List_reservation_admin extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('role:admin');
-    }
-    public function index()
+     public function index()
     {
         $totalReservations = Reservation::count();
         $enAttenteCount = Reservation::where('etat_confirmation', 'En attente')->count();

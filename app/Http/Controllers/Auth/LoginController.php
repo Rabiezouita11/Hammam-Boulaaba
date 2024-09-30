@@ -44,7 +44,7 @@ class LoginController extends Controller
                 case 'client':
                     return '/home';
                 case 'admin':
-                    return 'http://test.hammamboulaaba.com/app/user/list';
+                    return '/app/user/list';
                 default:
                     return '/login';
             }

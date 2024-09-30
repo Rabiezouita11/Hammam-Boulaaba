@@ -24,7 +24,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         ResetPassword::createUrlUsing(function (User $user, string $token) {
-            return 'http://test.hammamboulaaba.com/password/reset/' . $token . '?email=' . urlencode($user->email);
+            return 'http://127.0.0.1:8000/password/reset/' . $token . '?email=' . urlencode($user->email);
         });
         $this->registerPolicies();
         //

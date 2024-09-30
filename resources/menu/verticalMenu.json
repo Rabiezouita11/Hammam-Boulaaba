@@ -9,7 +9,7 @@
       "slug": "app-user",
       "submenu": [
         {
-          "url": "http://test.hammamboulaaba.com/app/user/list",
+          "url": "http://127.0.0.1:8000/app/user/list",
           "name": "Liste",
           "slug": "app-user-list"
         }
@@ -21,7 +21,7 @@
       "slug": "app-Services",
       "submenu": [
         {
-          "url": "http://test.hammamboulaaba.com/app/Services/Services",
+          "url": "http://127.0.0.1:8000/app/Services/Services",
           "name": "Liste Service",
           "slug": "app-Services-Services"
         }
@@ -33,12 +33,12 @@
       "slug": "app-Reservation",
       "submenu": [
         {
-          "url": "http://test.hammamboulaaba.com/app/Reservation/liste",
+          "url": "http://127.0.0.1:8000/app/Reservation/liste",
           "name": "Liste Réservation",
           "slug": "app-Reservation-liste"
         },
         {
-          "url": "http://test.hammamboulaaba.com/app/Reservation/calender",
+          "url": "http://127.0.0.1:8000/app/Reservation/calender",
           "name": "Calendrier",
           "slug": "app-Reservation-calender"
         }

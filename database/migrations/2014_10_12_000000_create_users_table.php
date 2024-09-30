@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Set the default character set for the database connection
+        Schema::defaultStringLength(191); // Adjust to 191 to avoid index issues
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email', 191)->unique();  // Limit length to 191
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('pays')->nullable();

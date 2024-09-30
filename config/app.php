@@ -28,7 +28,7 @@ return [
     |
     */
 
-  'env' => env('APP_ENV', 'production'),
+  'env' => env('APP_ENV', 'local'),
 
   /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-  'url' => env('APP_URL', 'http://test.hammamboulaaba.com'),
+  'url' => env('APP_URL', 'http://127.0.0.1:8000'),
 
   'asset_url' => env('ASSET_URL'),
 

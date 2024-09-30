@@ -705,7 +705,7 @@ function hideSpinner() {
           const reservationId = event.target.getAttribute('data-reservation-id');
 
           // Navigate to the reservation page and open the calendar for the reservation
-          window.location.href = `http://test.hammamboulaaba.com/app/Reservation/liste?reservationId=${reservationId}`;
+          window.location.href = `http://127.0.0.1:8000/app/Reservation/liste?reservationId=${reservationId}`;
         }
       });
 
