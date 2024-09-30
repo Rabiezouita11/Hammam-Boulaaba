@@ -3,11 +3,12 @@
 @section('title', 'Services List - Pages')
 
 @section('vendor-style')
-<link rel="stylesheet" href="/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css">
-<link rel="stylesheet" href="/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css">
-<link rel="stylesheet" href="/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css">
-<link rel="stylesheet" href="/assets/vendor/libs/select2/select2.css" />
-<link rel="stylesheet" href="/assets/vendor/libs/@form-validation/umd/styles/index.min.css" />
+    <link rel="stylesheet" href="/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css">
+    <link rel="stylesheet" href="/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css">
+    <link rel="stylesheet" href="/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css">
+    <link rel="stylesheet" href="/assets/vendor/libs/select2/select2.css" />
+    <link rel="stylesheet"
+        href="/assets/vendor/libs/@form-validation/umd/styles/index.min.css" />
 
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -27,7 +28,7 @@
 <script>
   // Check if validation errors exist and show the modal if they do
 
-  // @if($errors -> has('name'))
+  // @if ($errors->has('name'))
   // $(document).ready(function() {
   //   // Show the password modal if there are validation errors
   //   $('.offcanvasAddUser').modal('show');
@@ -55,7 +56,7 @@
           <div class="content-left">
             <span>Total Services</span>
             <div class="d-flex align-items-center my-2">
-              <h3 class="mb-0 me-2">{{ $ServicesCount}}</h3>
+              <h3 class="mb-0 me-2">{{ $ServicesCount }}</h3>
             </div>
 
           </div>
@@ -74,9 +75,17 @@
         <div class="d-flex align-items-start justify-content-between">
           <div class="content-left">
             <span>Service de durée maximale</span>
+            @if ($maxDurationService)
             <h3 class="mb-0 me-2">{{ $maxDurationService->dure }} hours</h3>
-            <p>{{ $maxDurationService->Designations }}</p>
-          </div>
+        @else
+            <h3 class="mb-0 me-2">No maximum duration available</h3>
+        @endif
+        @if ($maxDurationService)
+        <p>{{ $maxDurationService->Designations }}</p>
+    @else
+        <p>No designation available for maximum duration service.</p>
+    @endif
+              </div>
           <div class="avatar">
             <span class="avatar-initial rounded bg-label-primary">
               <i class="fas fa-clock  fa-2x"></i> <!-- Font Awesome clock icon -->
@@ -94,9 +103,17 @@
         <div class="d-flex align-items-start justify-content-between">
           <div class="content-left">
             <span>Service à prix maximum</span>
+            @if ($maxPriceService)
             <h3 class="mb-0 me-2">{{ $maxPriceService->prix }} TND</h3>
-            <p>{{ $maxPriceService->Designations }}</p>
-          </div>
+        @else
+            <h3 class="mb-0 me-2">No maximum price available</h3>
+        @endif
+        @if ($maxPriceService)
+        <p>{{ $maxPriceService->Designations }}</p>
+    @else
+        <p>No designation available for maximum price service.</p>
+    @endif
+              </div>
           <div class="avatar">
             <span class="avatar-initial rounded bg-label-danger">
               <i class="fas fa-money-bill-alt  fa-2x"></i> <!-- Font Awesome money icon -->
@@ -113,8 +130,14 @@
         <div class="d-flex align-items-start justify-content-between">
           <div class="content-left">
             <span>Service de capacité maximale</span>
-            <h3 class="mb-0 me-2">{{ $maxCapacityService->capacite }}</h3>
+            @if ($maxCapacityService)
+            <h3 class="mb-0 me-2">{{ $maxCapacityService->capacite }} people</h3>
             <p>{{ $maxCapacityService->Designations }}</p>
+        @else
+            <h3 class="mb-0 me-2">No maximum capacity available</h3>
+            <p>No designation available for maximum capacity service.</p>
+        @endif
+        
           </div>
           <div class="avatar">
             <span class="avatar-initial rounded bg-label-success">
@@ -131,14 +154,14 @@
 <center>
   @if (session('success'))
   <div class="alert alert-success" role="alert">
-    {{session('success')}}
+    {{ session('success') }}
   </div>
   @endif
 </center>
 <center>
   @if (session('error'))
   <div class="alert alert-danger" role="alert">
-    {{session('error')}}
+    {{ session('error') }}
   </div>
   @endif
 </center>
@@ -312,8 +335,8 @@
           <label class="form-label" for="methode_tarification">Méthode de tarification</label>
           <select name="methode_tarification" class="form-control @error('methode_tarification') is-invalid @enderror" id="methode_tarification" required autocomplete="methode_tarification">
             <option value="">Sélectionnez une méthode de tarification</option>
-            <option value="par_place" @if(old('methode_tarification')=='par_place' ) selected @endif>Par place</option>
-            <option value="par_reservation" @if(old('methode_tarification')=='par_reservation' ) selected @endif>Par réservation</option>
+            <option value="par_place" @if (old('methode_tarification') == 'par_place') selected @endif>Par place</option>
+            <option value="par_reservation" @if (old('methode_tarification') == 'par_reservation') selected @endif>Par réservation</option>
           </select>
           @error('methode_tarification')
           <span class="invalid-feedback" role="alert">
@@ -374,7 +397,7 @@
         <div class="mb-3">
           <label class="form-label">Promotion</label>
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="promotion" name="promotion" @if(old('promotion')) checked @endif>
+            <input class="form-check-input" type="checkbox" id="promotion" name="promotion" @if (old('promotion')) checked @endif>
             <label class="form-check-label" for="promotion">Activer la promotion</label>
           </div>
         </div>
@@ -382,15 +405,15 @@
           <label class="form-label" for="add-user-contact">categories</label>
           <select name="categories" class="form-control @error('categories') is-invalid @enderror" required autocomplete="categories">
             <option value="">Select categories</option>
-            <option value="MASSAGES" @if(old('categories')=='MASSAGES' ) selected @endif>MASSAGES</option>
-            <option value="SOINS ESTHÉTIQUES" @if(old('categories')=='SOINS ESTHÉTIQUES' ) selected @endif>SOINS ESTHÉTIQUES</option>
+            <option value="MASSAGES" @if (old('categories') == 'MASSAGES') selected @endif>MASSAGES</option>
+            <option value="SOINS ESTHÉTIQUES" @if (old('categories') == 'SOINS ESTHÉTIQUES') selected @endif>SOINS ESTHÉTIQUES</option>
 
-            <option value="PRESTATIONS THERMALES" @if(old('categories')=='PRESTATIONS THERMALES' ) selected @endif>PRESTATIONS THERMALES</option>
+            <option value="PRESTATIONS THERMALES" @if (old('categories') == 'PRESTATIONS THERMALES') selected @endif>PRESTATIONS THERMALES</option>
 
-            <option value="LA COLINA LOUNGE et CLUB" @if(old('categories')=='LA COLINA LOUNGE et CLUB' ) selected @endif>LA COLINA LOUNGE & CLUB</option>
-            <option value="VOS ÉVÉNEMENTS" @if(old('categories')=='VOS ÉVÉNEMENTS' ) selected @endif>VOS ÉVÉNEMENTS</option>
+            <option value="LA COLINA LOUNGE et CLUB" @if (old('categories') == 'LA COLINA LOUNGE et CLUB') selected @endif>LA COLINA LOUNGE & CLUB</option>
+            <option value="VOS ÉVÉNEMENTS" @if (old('categories') == 'VOS ÉVÉNEMENTS') selected @endif>VOS ÉVÉNEMENTS</option>
 
-            <option value="BUNGALOWS" @if(old('categories')=='BUNGALOWS' ) selected @endif>BUNGALOWS</option>
+            <option value="BUNGALOWS" @if (old('categories') == 'BUNGALOWS') selected @endif>BUNGALOWS</option>
 
 
 
@@ -449,9 +472,9 @@
           <label class="form-label" for="add-user-contact">categories</label>
           <select name="categories" class="form-control @error('categories') is-invalid @enderror" required autocomplete="categories">
             <option value="">Select categories</option>
-            <option value="PRESTATIONS THERMALES" @if(old('categories')=='PRESTATIONS THERMALES' ) selected @endif>PRESTATIONS THERMALES</option>
-            <option value="MASSAGES ET SOINS" @if(old('categories')=='MASSAGES ET SOINS' ) selected @endif>MASSAGES ET SOINS</option>
-            <option value="LA COLINA LOUNGE et  CLUB - BUNGALOWS" @if(old('categories')=='LA COLINA LOUNGE et  CLUB - BUNGALOWS' ) selected @endif>LA COLINA LOUNGE et CLUB - BUNGALOWS</option>
+            <option value="PRESTATIONS THERMALES" @if (old('categories') == 'PRESTATIONS THERMALES') selected @endif>PRESTATIONS THERMALES</option>
+            <option value="MASSAGES ET SOINS" @if (old('categories') == 'MASSAGES ET SOINS') selected @endif>MASSAGES ET SOINS</option>
+            <option value="LA COLINA LOUNGE et  CLUB - BUNGALOWS" @if (old('categories') == 'LA COLINA LOUNGE et  CLUB - BUNGALOWS') selected @endif>LA COLINA LOUNGE et CLUB - BUNGALOWS</option>
 
 
 
@@ -460,61 +483,63 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="country">Image</label>
-          <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" required placeholder="Email Address">
-          @error('image')
-          <span class="invalid-feedback" role="alert">
+    <label class="form-label" for="country">Image</label>
+    <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" required
+        placeholder="Email Address">
+    @error('image')
+        <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
-          </span>
-          @enderror
+        </span>
+    @enderror
 
-        </div>
-
-
-
-        <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Ajouter</button>
-        <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
-      </form>
     </div>
-  </div>
-</div>
 
 
-<script>
-  $(document).ready(function() {
-    // Hide the "durée (heure)" input initially
-    $('#dureContainer').hide();
 
-    // Listen for changes in the "methode_tarification" select
-    $('#methode_tarification').change(function() {
-      // If "par_reservation" is selected, hide the "durée (heure)" input, else show it
-      if ($(this).val() === 'par_reservation') {
-        $('#dureContainer').hide();
-        $('#capacite').prop('required', false); // Make capacite not required
-      } else {
-        $('#dureContainer').show();
-        $('#capacite').prop('required', true); // Make capacite required
-      }
-    });
-  });
-</script>
-<script>
-  $(document).ready(function() {
-    $('#submitButton').click(function() {
-      var dureHours = $('#dure_hours').val();
-      var dureMinutes = $('#dure_minutes').val();
+    <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Ajouter</button>
+    <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+    </form>
+    </div>
+    </div>
+    </div>
 
-      // Check if at least one of the fields has a value
-      if (dureHours === '' && dureMinutes === '') {
-        $('#error-message').css('color', 'red');
-        $('#error-message').html('Veuillez entrer au moins une valeur pour la durée, en heures ou en minutes.');
-        return false; // Prevent form submission
-      }
 
-      // If at least one field is filled, submit the form
+    <script>
+        $(document).ready(function() {
+            // Hide the "durée (heure)" input initially
+            $('#dureContainer').hide();
 
-    });
-  });
-</script>
+            // Listen for changes in the "methode_tarification" select
+            $('#methode_tarification').change(function() {
+                // If "par_reservation" is selected, hide the "durée (heure)" input, else show it
+                if ($(this).val() === 'par_reservation') {
+                    $('#dureContainer').hide();
+                    $('#capacite').prop('required', false); // Make capacite not required
+                } else {
+                    $('#dureContainer').show();
+                    $('#capacite').prop('required', true); // Make capacite required
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#submitButton').click(function() {
+                var dureHours = $('#dure_hours').val();
+                var dureMinutes = $('#dure_minutes').val();
+
+                // Check if at least one of the fields has a value
+                if (dureHours === '' && dureMinutes === '') {
+                    $('#error-message').css('color', 'red');
+                    $('#error-message').html(
+                        'Veuillez entrer au moins une valeur pour la durée, en heures ou en minutes.');
+                    return false; // Prevent form submission
+                }
+
+                // If at least one field is filled, submit the form
+
+            });
+        });
+    </script>
 
 @endsection
